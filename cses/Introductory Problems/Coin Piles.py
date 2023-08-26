@@ -1,25 +1,17 @@
-def Coin_Piles(a,b):
-    i=1
-    a_swap=0
-    b_swap=0
-    if a>b:
-        a_swap,b_swap=a,b
+# Function to check if both piles can be emptied
+def can_empty_piles(a, b):
+    if (a + b) % 3 == 0 and  2*a >= b and 2*b >= a:
+        return "YES"
     else:
-        a_swap,b_swap=b,a
-    while a_swap>0 and b_swap>0:
-        if i%2!=0:
-            a_swap-=2
-            b_swap-=1
-        else:
-            a_swap-=1
-            b_swap-=2
-        i+=1
-    if a_swap==0 and b_swap==0:
-        print('YES')
-    else:
-        print('NO')
-t=int(input())
-while t>0:
-    a,b=map(int,input().split(' '))
-    Coin_Piles(a,b)
-    t-=1
+        return "NO"
+
+# Read the number of tests
+t = int(input())
+
+# Iterate for each test case
+for _ in range(t):
+    # Read the values of a and b
+    a, b = map(int, input().split())
+
+    # Check if both piles can be emptied and print the result
+    print(can_empty_piles(a, b))
