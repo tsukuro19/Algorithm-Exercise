@@ -10,8 +10,11 @@ def lexi_biggest(string_lexi):
         if string_lexi[start]<string_lexi[j]:
             end=j
     string_lexi[start],string_lexi[end]=string_lexi[end],string_lexi[start]
-    string_lexi[start+1:]=reversed(string_lexi[i+1:])
-    return ''.join(string_lexi)
+    a=string_lexi[start+1:]
+    a_sorted=sorted(a)
+    for i in range(start+1,len(string_lexi)):
+        string_lexi[i]=a_sorted[i-start-1]
+    return "".join(string_lexi)
 
 
 if __name__=="__main__":
