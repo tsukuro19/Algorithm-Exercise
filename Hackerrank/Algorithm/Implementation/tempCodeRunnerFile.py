@@ -1,22 +1,22 @@
-def lexi_biggest(string_lexi):
-    start=-1
-    for i in range(len(string_lexi)-1):
-        if string_lexi[i]<string_lexi[i+1]:
-            start=i
-    if start==-1:
-        return "no answer"
-    end=-1
-    for j in range(start+1,len(string_lexi)):
-        if string_lexi[start]<string_lexi[j]:
-            end=j
-    string_lexi[start],string_lexi[end]=string_lexi[end],string_lexi[start]
-    string_lexi[start+1:]=reversed(string_lexi[i+1:])
-    return ''.join(string_lexi)
-
+def Cavity_map(matrix,row_number,col_number):
+    result_matrix=[]
+    for row in range(row_number):
+        result_matrix.append(matrix[row])
+    for row in range(1,row_number-1):
+        for col in range(col_number):
+            if col!=0 and col!=col_number-1:
+                if int(matrix[row][col])>int(matrix[row-1][col]) and int(matrix[row][col])>int(matrix[row+1][col]) and int(matrix[row][col])>int(matrix[row][col-1]) and int(matrix[row][col])>int(matrix[row][col+1]):
+                    result_matrix[row]=list(result_matrix[row])
+                    result_matrix[row][col]="X"
+                    result_matrix[row]=''.join(result_matrix[row])
+    return result_matrix
 
 if __name__=="__main__":
-    test=int(input())
-    while test!=0:
-        string_lexi=list(map(str,input().strip()))
-        print(lexi_biggest(string_lexi))
-        test-=1
+    row_number=col_number=int(input())
+    matrix=[]
+    for row in range(row_number):
+        rows=input()
+        matrix.append(rows)
+    result_matrix=Cavity_map(matrix,row_number,col_number)
+    for i in range(row_number):
+        print("".join(map(str,result_matrix[i])))
